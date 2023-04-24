@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Contact Me 4</title>
+        <link rel="stylesheet" href="./assets/CSS/style-contact-me.css">
+    </head>
+    <body>
+        <nav>
+            <div class="nav-left">
+                <ul>
+                    <img src="assets/Images/logo.png" alt="logo">
+                    <li>
+                        <a href=index.html id="home">Home</a>
+                    </li>
+                    <li>
+                        <a href="my-project.html" id="my-project">My Project</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="contact-me.html">Contact Me</a>
+            </div>
+        </nav>
+        <h1>
+            GET IN TOUCH
+        </h1>
+        <form>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email">
+            </div>
+            <div>
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone">
+            </div>
+            <div>
+                <label for="subject">Subject</label>
+                <select id="subject">
+                    <option>Select Subject</option>
+                    <option>Discussion</option>
+                    <option>Suggestion</option>
+                    <option>Collaboration</option>
+                </select>
+            </div>
+            <div>
+                <label for="message">Your Message</label>
+                <textarea id="message"></textarea>
+            </div>
+            <div class="button">
+                <button type="button" onclick="getData()" id="submit-button">Submit</button>
+            </div>
+        </form>
+    </body>
+    <script src="assets/js/script.js"></script>
+</html>
