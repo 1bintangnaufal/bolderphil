@@ -1,0 +1,197 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project 6</title>
+    <link rel="stylesheet" href="assets/CSS/style-my-project.css">
+</head>
+
+
+<body>
+    <!-- nav bar start -->
+    <nav>
+        <div class="nav-left">
+            <ul>
+                <img src="assets/Images/logo.png" alt="logo">
+                <li>
+                    <a href=index.html id="home">Home</a>
+                </li>
+                <li>
+                    <a href="my-project.html" id="my-project">My Project</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="contact-me.html" id="contact-me">Contact Me</a>
+        </div>
+
+        <button onclick="hamburgerReveal()" id="hamburger-menu">
+            <img src="assets/Images/hamburger-menu.png" id="hamburger-menu-icon">
+        </button>
+    </nav>
+    <!-- navbar end -->
+
+    <div class="hamburger-reveal" id="hamburger-reveal">
+        <a href="index.html">HOME</a>
+        <a href="my-project.html">MY PROJECT</a>
+        <a href="contact-me.html">CONTACT ME</a>
+    </div>
+
+    <!-- content 1 start -->
+    <div class="container-1-group">
+        <div class="form-container">
+            <form onsubmit="getMyProject(event)">
+                <h1>ADD MY PROJECT</h1>
+                <div>
+                    <label class="except-check" for="project-name">Project Name</label>
+                    <input type="text" id="project-name" required>
+                </div>
+
+                <!-- date form start -->
+                <div class="date-container">
+                    <div class="start-date-container">
+                        <label class="except-check" for="start-date">
+                            Start Date
+                        </label>
+                        <input type="date" id="start-date" required>
+                    </div>
+                    <div class="end-date-container">
+                        <label class="except-check" for="end-date">
+                            End Date
+                        </label>
+                        <input type="date" id="end-date" required>
+                    </div>
+                </div>
+                <!-- date form end -->
+
+                <div class="text-area">
+                    <label class="except-check" for="description">Description</label>
+                    <textarea id="description"></textarea>
+                </div>
+
+                <!-- checkbox start -->
+                <div>
+                    <label class="except-check">Technologies</label>
+                    <div class="checkbox-container">
+                        <div class="check-and-label-wrapper">
+                            <input type="checkbox" id="NodeJs">
+                            <label class="check-label">Node.js</label>
+                        </div>
+                        <div class="check-and-label-wrapper">
+                            <input type="checkbox" id="React">
+                            <label class="check-label">React</label>
+                        </div>
+                        <div class="check-and-label-wrapper">
+                            <input type="checkbox" id="Javascript">
+                            <label class="check-label">Javascript</label>
+                        </div>
+                        <div class="check-and-label-wrapper">
+                            <input type="checkbox" id="SocketIo">
+                            <label class="check-label">Socket IO</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- checkbox end -->
+
+                <!-- upload image start -->
+                <div>
+                    <label class="except-check">Upload Image</label>
+                    <label for="upload-image" class="upload-image-click">
+                        <p>Choose</p>
+                        <img src="assets/Images/file.png" alt="file" />
+                    </label>
+                    <input type="file" id="upload-image" hidden />
+                </div>
+                <!-- upload image end -->
+
+                <!-- button start -->
+                <div class="button-2-wrapper">
+                    <button class="button-2" type="submit">Submit</button>
+                </div>
+                <!-- button end -->
+            </form>
+        </div>
+    </div>
+
+    <!-- container 2 start -->
+    <div class="container-2-group" id="projects-display">
+        <h1>MY PROJECTS</h1>
+        <div class="card-contents">
+            <div class="card">
+                <img src="assets\Images\mobile-app.jpg" alt="Mobile App" />
+                <a href="project-detail.html" id="card-1-click"><h3>Dumbways Mobile App</h3></a>
+                <p>Durasi: 3 Bulan</p>
+                <p>Mobile app developed by dumbways student, deployed and can be downloaded. Awesome!</p>
+                <div class="icon-section">
+                    <img src="assets\Images\app-store-icon.png" alt="App Store" />
+                    <img src="assets\Images\play-store-icon.png" alt="Google Play" />
+                </div>
+                <div class="button-3">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="assets\Images\web-app.jpg" alt="Web App" />
+                <h3>Dumbways Web App</h3>
+                <p>Durasi: 2 Bulan</p>
+                <p>Web app developed by dumbways student, deployed and can be accessed on the web. Awesome!</p>
+                <div class="icon-section">
+                    <img src="assets\Images\web-icon.png" alt="Web" />
+                    <img src="assets\Images\devices-icon.png" alt="Devices" />
+                </div>
+                <div class="button-3">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="assets\Images\database-server.jpg" alt="Database Server" />
+                <h3>Dumbways Server Database</h3>
+                <p>Durasi: 4 Bulan</p>
+                <p>Another awesome work from Dumbways student. Wink wink 😉. Wanna take a peek?</p>
+                <div class="icon-section">
+                    <img src="assets\Images\database-icon.png" alt="Database" />
+                    <img src="assets\Images\server-icon.png" alt="Server" />
+                </div>
+                <div class="button-3">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="assets\Images\desktop-app.jpg" alt="Desktop App" />
+                <h3>Dumbways Desktop App</h3>
+                <p>Durasi: 6 Bulan</p>
+                <p>Desktop app developed by dumbways student, deployed and can be downloaded. Awesome!</p>
+                <div class="icon-section">
+                    <img src="assets\Images\windows-icon.png" alt="Windows" />
+                    <img src="assets\Images\apple-logo.png" alt="Mac OS" />
+                </div>
+                <div class="button-3">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="assets\Images\fish-pond.jpg" alt="Fish Pond" />
+                <h3>Dumbways Lele Goreng</h3>
+                <p>Durasi: 1 Bulan</p>
+                <p>Lele goreng kalo kata orang enak banget apa lagi kalo pake sambel. Tapi menurut saya B aja.</p>
+                <div class="icon-section">
+                    <img src="assets\Images\fish-icon.png" alt="Cat Fish" />
+                    <img src="assets\Images\dish-icon.png" alt="Cutlery" />
+                </div>
+                <div class="button-3">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container 2 end -->
+    <script src="assets/js/project-script.js"></script>
+    <script src="assets/js/hamburger-menu.js"></script>
+</body>
+
+</html>
