@@ -1,0 +1,105 @@
+// alert('test dumb silly');
+
+VARIABLE DECLARATIONS
+
+// const myName="Bintang Naufal"
+// console.log(myName)
+
+// let myName="Bintang Naufal"
+// console.log(myName)
+
+// let myName1="Satrio"
+// console.log(myName1)
+
+
+
+// let myName="Bintang Naufal"
+// const myAge=16
+// var gender="male"
+
+// console.log(myName)
+// console.log(myAge)
+// console.log(gender)
+
+// var myName="John Doe"
+// myName="Bintang Naufal"
+// console.log(myName)
+
+// var myName="John Doe"
+// console.log(myName)
+
+
+DATA TYPES
+
+// let myName = "Bintang Naufal"
+// console.log(typeof myName)
+
+// let myAge = 16
+// console.log(myAge)
+// console.log(typeof myAge)
+
+// let isGraduated = true
+// console.log(isGraduated)
+// console.log(typeof isGraduated)
+
+// let tissue = null
+// console.log(tissue)
+// console.log(typeof tissue)
+
+// let tissue2 = 0
+// console.log(tissue2)
+// console.log(typeof tissue2)
+
+
+CONDITIONALS
+
+let myAge = 17
+
+// // if(myAge > 16) {
+// //     alert("Kamu sudah dewasa!")
+// // } else {
+// //     alert("Kamu belum cukup umur :(")
+// // }
+
+// if(myAge < 12) {
+//     alert("Belum bisa daftar SMP")
+// } else if(myAge < 15) {
+//     alert("Belum bisa daftar SMA")
+// } else {
+//     alert("Wow kamu sudah besar uWu")
+// }
+
+
+
+FUNCTION JAVSCRIPT
+
+- deklarasi function
+- menjalankan function
+- parameter
+- argument
+- return
+
+// function helloworld() {
+//     let message = "Good Day"
+//     console.log("Hello World")
+//     console.log(message)
+// }
+
+// helloworld()
+
+// const message = function() {
+//     const name = "Bintang Naufal"
+//     console.log(name)
+// }
+
+// message {}
+
+// const greeting = () => {
+//     console.log("Good Day")
+// }
+
+function helloworld(nilaiAwal, b) {
+    return nilaiAwal + b
+}
+
+console.log(helloworld(10, 5))

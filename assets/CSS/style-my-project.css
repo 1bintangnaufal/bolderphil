@@ -1,0 +1,283 @@
+body {
+    margin: 0;
+    background-color: #d8d8dc;
+    font-family: Poppins;
+}
+
+
+
+/* navbar styling start */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 40px;
+}
+
+.nav-left ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    padding: 0 40px;
+}
+
+nav img {
+    margin-right: 50px;
+}
+
+.nav-left ul li {
+    margin-right: 30px;
+    font-size: 20px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    font-size: 16px;
+    background-color: rgb(17, 17, 17);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-family: Poppins;
+}
+
+.nav-right a:hover {
+    transition: ease-in-out 0.3s;
+    background-color: #4a4a4a;
+}
+
+.nav-left a {
+    text-decoration: none;
+    color: black;
+    font-family: Poppins;
+}
+
+.nav-left #my-project {
+    font-weight: bold;
+}
+
+.nav-left #home:hover {
+    color: #bbbbbb;
+    transition: ease-in-out 0.3s;
+}
+/* navbar styling end */
+
+
+
+h1 {
+    font-family: Poppins;
+    text-align: center;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+
+
+/* container 1 styling start */
+.except-check {
+    font-weight: bold;
+}
+
+form {
+    width: 350px;
+    margin: 50px auto;
+}
+
+form div {
+    margin-top: 15px;
+}
+
+.date-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+#project-name,
+#start-date,
+#end-date,
+#description,
+#upload-image {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 0px solid #000000;
+    padding: 10px;
+    margin-top: 15px;
+    box-shadow: 0px 1px 3px 1px #bbbbbb;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+.text-area {
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.check-label {
+    padding: 3px 0px 0px 0px;
+}
+
+.checkbox-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    column-gap: 96px;
+    padding-bottom: 30px;
+}
+
+.check-and-label-wrapper {
+    display: flex;
+    column-gap: 12px;
+}
+
+#NodeJs,
+#React,
+#Javascript,
+#SocketIo {
+    cursor: pointer;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 1px 3px 1px #bbbbbb;
+    height: 24px;
+    width: 24px;
+}
+
+
+.upload-image-click {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 3px 1px #bbbbbb;
+    padding: 0px;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.upload-image-click p {
+    background-color: #bbbbbb;
+    margin: 0;
+    padding: 0px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.upload-image-click img {
+    width: 24px;
+    height: 24px;
+    padding: 5px 10px 10px 0px;
+}
+
+.button-2-wrapper {
+    margin-top: 60px;
+    display: flex;
+    justify-content: flex-end ;
+}
+
+.button-2 {
+    padding: 12px 36px; 
+    border-radius: 24px; 
+    background-color: black; 
+    color: white; 
+    border: 0px; 
+    cursor: pointer; 
+    font-family: Poppins;
+    text-decoration: none;
+    display: inline-block;
+    text-decoration-line: none;
+}
+
+.button-2:hover {
+    transition: ease-in-out 0.3s;
+    background-color: #4a4a4a;
+}
+/* container 1 styling end */
+
+
+
+/* container 2 styling start */
+.container-2-group {
+    background-color: #ffffff;
+    padding-top: 20px; 
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 50px; 
+}
+
+.card-contents {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-gap: 5px;
+}
+
+.card {
+    border: 0px solid;
+    box-shadow: 2px 4px 8px 1px #dadada;
+    padding: 30px 15px;
+    margin: 10px 10px;
+    border-radius: 12px;
+}
+
+.card-contents img {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.icon-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.icon-section img {
+    width: 24px;
+    height: 24px;
+    padding-right: 16px;
+}
+
+.button-3 {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+}
+
+.button-3 button {
+    padding: 12px 36px; 
+    border-radius: 24px; 
+    background-color: black; 
+    color: white; 
+    border: 0px; 
+    cursor: pointer; 
+    font-family: Poppins;
+    text-decoration: none;
+    text-decoration-line: none;
+    width: 100%;
+}
+
+.button-3 button:hover {
+    transition: ease-in-out 0.3s;
+    background-color: #4a4a4a;
+}
+
+#card-1-click {
+    text-decoration: none;
+    color: #000000;
+}
+
+#card-1-click:hover {
+    color: #468ff5;
+    transition: ease-in-out 0.5s;
+}
+/* container 2 styling end */
