@@ -1,0 +1,38 @@
+body {
+    background-color: #d8d8dc;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* navbar */
+#nav-button-get-in-touch a {
+    text-decoration: none; color: white;
+}
+
+/* navbar bootstrap responsive */
+@media only screen and (max-width: 992px) {
+    #nav-button-get-in-touch {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+}
+
+/* home page */
+#social-icons i {
+    color: #212529;
+}
+
+#social-icons i:hover {
+    color: #424649;
+    transition: ease-in-out 0.2s;
+}
+
+/* get in touch and project page */
+#contact-form,
+#project-form {
+    width: 70%;
+}
+
+/* project detail */
+#project-detail-paragraph p {
+    text-align: justify;
+}

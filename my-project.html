@@ -2,200 +2,88 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project 9</title>
-    <link rel="stylesheet" href="assets/CSS/style-my-project.css">
+    <title>My Project 10</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/CSS/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 
 <body>
-    <!-- nav bar start -->
-    <nav>
-        <div class="nav-left">
-            <ul>
-                <img src="assets/Images/logo.png" alt="logo">
-                <li>
-                    <a href=index.html id="home">Home</a>
-                </li>
-                <li>
-                    <a href="my-project.html" id="my-project">My Project</a>
-                </li>
-                <li>
-                    <a href="testimonials.html" id="testimonials">Testimonials</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container">
+            <img src="assets/Images/logo.png" style="width: 36px" class="navbar-brand" href="index.html" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold active" aria-current="page" href="my-project.html">Add Project</a>
+                    </li>
+                </ul>
+                <button class="btn btn-dark" type="button" id="nav-button-get-in-touch">
+                    <a href="get-in-touch.html">Get in touch</a>
+                </button>
+            </div>
         </div>
-        <div class="nav-right">
-            <a href="contact-me.html" id="contact-me">Contact Me</a>
-        </div>
-
-        <button onclick="hamburgerReveal()" id="hamburger-menu">
-            <img src="assets/Images/hamburger-menu.png" id="hamburger-menu-icon">
-        </button>
     </nav>
-    <!-- navbar end -->
 
-    <div class="hamburger-reveal" id="hamburger-reveal">
-        <a href="index.html">HOME</a>
-        <a href="my-project.html">MY PROJECT</a>
-        <a href="testimonials.html">TESTIMONIALS</a>
-        <a href="contact-me.html">CONTACT ME</a>
-    </div>
-
-    <!-- content 1 start -->
-    <div class="container-1-group">
-        <div class="form-container">
-            <form onsubmit="getMyProject(event)">
-                <h1>ADD MY PROJECT</h1>
-                <div>
-                    <label class="except-check" for="project-name">Project Name</label>
-                    <input type="text" id="project-name" required>
-                </div>
-
-                <!-- date form start -->
-                <div class="date-container">
-                    <div class="start-date-container">
-                        <label class="except-check" for="start-date">
-                            Start Date
-                        </label>
-                        <input type="date" id="start-date" required>
-                    </div>
-                    <div class="end-date-container">
-                        <label class="except-check" for="end-date">
-                            End Date
-                        </label>
-                        <input type="date" id="end-date" required>
-                    </div>
-                </div>
-                <!-- date form end -->
-
-                <div class="text-area">
-                    <label class="except-check" for="description">Description</label>
-                    <textarea id="description"></textarea>
-                </div>
-
-                <!-- checkbox start -->
-                <div>
-                    <label class="except-check">Technologies</label>
-                    <div class="checkbox-container">
-                        <div class="check-and-label-wrapper">
-                            <input type="checkbox" id="NodeJs">
-                            <label class="check-label">Node.js</label>
-                        </div>
-                        <div class="check-and-label-wrapper">
-                            <input type="checkbox" id="React">
-                            <label class="check-label">React</label>
-                        </div>
-                        <div class="check-and-label-wrapper">
-                            <input type="checkbox" id="Javascript">
-                            <label class="check-label">Javascript</label>
-                        </div>
-                        <div class="check-and-label-wrapper">
-                            <input type="checkbox" id="SocketIo">
-                            <label class="check-label">Socket IO</label>
-                        </div>
-                    </div>
-                </div>
-                <!-- checkbox end -->
-
-                <!-- upload image start -->
-                <div>
-                    <label class="except-check">Upload Image</label>
-                    <label for="upload-image" class="upload-image-click">
-                        <p>Choose</p>
-                        <img src="assets/Images/file.png" alt="file" />
-                    </label>
-                    <input type="file" id="upload-image" hidden />
-                </div>
-                <!-- upload image end -->
-
-                <!-- button start -->
-                <div class="button-2-wrapper">
-                    <button class="button-2" type="submit">Submit</button>
-                </div>
-                <!-- button end -->
-            </form>
+    <h3 class="my-5 text-center fw-bolder">ADD A NEW PROJECT</h3>
+    <form id="project-form" class="row g-4 mx-auto">
+        <div class="col-12">
+            <label for="projectName" class="form-label fw-bold">Project name</label>
+            <input type="text" class="form-control" placeholder="Enter project name" id="projectName" required>
         </div>
-    </div>
 
-    <!-- container 2 start -->
-    <div class="container-2-group" id="projects-display">
-        <h1>MY PROJECTS</h1>
-        <div class="card-contents">
-            <div class="card">
-                <img src="assets\Images\mobile-app.jpg" alt="Mobile App" />
-                <a href="project-detail.html" id="card-1-click"><h3>Dumbways Mobile App</h3></a>
-                <p>Durasi: 3 Bulan</p>
-                <p>Mobile app developed by dumbways student, deployed and can be downloaded. Awesome!</p>
-                <div class="icon-section">
-                    <img src="assets\Images\app-store-icon.png" alt="App Store" />
-                    <img src="assets\Images\play-store-icon.png" alt="Google Play" />
-                </div>
-                <div class="button-3">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
+        <div class="col-sm-6">
+            <label for="startDate" class="form-label fw-bold">Start date</label>
+            <input type="date" class="form-control" id="startDate" required>
+        </div>
+        <div class="col-sm-6">
+            <label for="endDate" class="form-label fw-bold">End date</label>
+            <input type="date" class="form-control" id="endDate" required>
+        </div>
+
+        <div class="col-12">
+            <label for="projectDescription" class="form-label fw-bold">Project description</label>
+            <textarea class="form-control" rows="7" placeholder="What is the project about?" id="projectDescription" style="resize: none;" required></textarea>
+        </div>
+        <div class="col-12">
+            <label class="form-label fw-bold">Technologies</label>
+            <div class="pb-2">
+                <input class="form-check-input me-2" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" style="margin-right: 60px;" for="inlineCheckbox1">Javascript</label>
+                <input class="form-check-input me-2" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">Node Js</label>
             </div>
-            <div class="card">
-                <img src="assets\Images\web-app.jpg" alt="Web App" />
-                <h3>Dumbways Web App</h3>
-                <p>Durasi: 2 Bulan</p>
-                <p>Web app developed by dumbways student, deployed and can be accessed on the web. Awesome!</p>
-                <div class="icon-section">
-                    <img src="assets\Images\web-icon.png" alt="Web" />
-                    <img src="assets\Images\devices-icon.png" alt="Devices" />
-                </div>
-                <div class="button-3">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets\Images\database-server.jpg" alt="Database Server" />
-                <h3>Dumbways Server Database</h3>
-                <p>Durasi: 4 Bulan</p>
-                <p>Another awesome work from Dumbways student. Wink wink 😉. Wanna take a peek?</p>
-                <div class="icon-section">
-                    <img src="assets\Images\database-icon.png" alt="Database" />
-                    <img src="assets\Images\server-icon.png" alt="Server" />
-                </div>
-                <div class="button-3">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets\Images\desktop-app.jpg" alt="Desktop App" />
-                <h3>Dumbways Desktop App</h3>
-                <p>Durasi: 6 Bulan</p>
-                <p>Desktop app developed by dumbways student, deployed and can be downloaded. Awesome!</p>
-                <div class="icon-section">
-                    <img src="assets\Images\windows-icon.png" alt="Windows" />
-                    <img src="assets\Images\apple-logo.png" alt="Mac OS" />
-                </div>
-                <div class="button-3">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets\Images\fish-pond.jpg" alt="Fish Pond" />
-                <h3>Dumbways Lele Goreng</h3>
-                <p>Durasi: 1 Bulan</p>
-                <p>Lele goreng kalo kata orang enak banget apa lagi kalo pake sambel. Tapi menurut saya B aja.</p>
-                <div class="icon-section">
-                    <img src="assets\Images\fish-icon.png" alt="Cat Fish" />
-                    <img src="assets\Images\dish-icon.png" alt="Cutlery" />
-                </div>
-                <div class="button-3">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
+            <div class="pb-2">
+                <input class="form-check-input me-2" type="checkbox" id="inlineCheckbox3" value="option3">
+                <label class="form-check-label" style="margin-right: 76.7px;" for="inlineCheckbox3">React Js</label>
+                <input class="form-check-input me-2" type="checkbox" id="inlineCheckbox4" value="option4">
+                <label class="form-check-label" for="inlineCheckbox4">Socket IO</label>
             </div>
         </div>
-    </div>
-    <!-- container 2 end -->
-    <script src="assets/js/project-script.js"></script>
-    <script src="assets/js/hamburger-menu.js"></script>
+        <div class="col-12">
+            <label for="formFile" class="form-label fw-bold">Upload image</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
+        <div class="col-12 mb-5 mt-5 d-flex justify-content-end">
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
