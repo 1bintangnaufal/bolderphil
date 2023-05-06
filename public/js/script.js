@@ -5,15 +5,15 @@ function getData(){
     let subject = document.getElementById("subject").value
     let message = document.getElementById("message").value
 
-    if(name == ""){
-        return alert("Nama harus diisi")
-    }   else if(email == ""){
-        return alert("Email harus diisi")
-    }   else if(phone == ""){
-        return alert("Phone harus diisi")
-    }   else if(message == ""){
-        return alert("Message harus diisi")
-    }
+    // if(name == ""){
+    //     return alert("Nama harus diisi")
+    // }   else if(email == ""){
+    //     return alert("Email harus diisi")
+    // }   else if(phone == ""){
+    //     return alert("Phone harus diisi")
+    // }   else if(message == ""){
+    //     return alert("Message harus diisi")
+    // }
 
     const destination = "1bintangnaufal@gmail.com"
     let a = document.createElement("a")

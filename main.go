@@ -1,13 +1,51 @@
 package main
 
 import (
+	// "errors"
+	"fmt"
 	"html/template"
 	"net/http"
-	// "strconv"
-
-	"fmt"
+	"time"
+	// "time"
+	"strconv"
 	"github.com/labstack/echo/v4"
+	// "golang.org/x/tools/go/analysis/passes/timeformat"
 )
+
+type projectCards struct {
+	ProjectNameDisplay        string
+	StartDate                 string
+	EndDate                   string
+	MonthDuration             string
+	DayDuration               string
+	Duration                  string
+	ProjectDescriptionDisplay string
+	ReactIcon                 string
+	JsIcon                    string
+	NodeIcon                  string
+	SocketIcon                string
+}
+
+var projectCardValues = []projectCards{
+	{
+		ProjectNameDisplay:        "Latest Mobile App",
+		StartDate:                 "January 31 2023",
+		EndDate:                   "March 23 2023",
+		Duration:                  "2 Months",
+		ProjectDescriptionDisplay: "Pusing kepala pecah. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur corporis impedit perspiciatis perferendis dolore necessitatibus alias amet libero voluptate. Cumque, possimus unde. Iure nemo dicta ratione nesciunt! Cupiditate architecto facilis earum ad deleniti, deserunt laboriosam, minima qui voluptate nam dolore totam eum error quod nemo accusamus sit obcaecati facere alias impedit veniam. Praesentium quas maxime ad impedit distinctio! Assumenda aspernatur iusto corrupti, quibusdam sequi inventore sint nisi accusantium obcaecati ad, sed provident repellat ullam ipsam excepturi odio distinctio fugit in illum dolorem? In quasi blanditiis doloremque, commodi ratione et praesentium iste modi. Recusandae autem voluptas, non saepe cumque dolorem vel!",
+		JsIcon:                    "Javascript",
+		NodeIcon:                  "Node Js",
+	},
+	// {
+	// 	ProjectNameDisplay: "Latest Web App",
+	// 	StartDate: "December 1 2022",
+	// 	EndDate: "February 2 2023",
+	// 	Duration: "2 Months",
+	// 	ProjectDescriptionDisplay: "Wow, kasihan otak saya",
+	// 	ReactIcon: "React Js",
+	// 	SocketIcon: "Socket IO",
+	// },
+}
 
 func main() {
 	e := echo.New()
@@ -19,9 +57,12 @@ func main() {
 	e.GET("/get-in-touch", getInTouch)
 	e.GET("/add-a-new-project", addANewProject)
 	e.POST("/add-a-new-project", submitNewProject)
-	e.GET("/project-detail", projectDetail)
+	e.GET("/project-detail/:id", projectDetail)
+	e.GET("/edit-project/:id", editProject)
+	e.POST("/edit-project/:id", submitEditedProject)
+	e.GET("/deleteProject/:id", deleteProject)
 
-	e.Logger.Fatal(e.Start("localhost:8000"))
+	e.Logger.Fatal(e.Start("localhost:5000"))
 }
 
 func home(c echo.Context) error {
@@ -32,7 +73,11 @@ func home(c echo.Context) error {
 		//ini untuk menampilkan error saat dijalankan di browser, melainkan terminal
 	}
 
-	return tmpl.Execute(c.Response(), nil)
+	data := map[string]interface{}{
+		"dataValues": projectCardValues,
+	}
+
+	return tmpl.Execute(c.Response(), data)
 }
 
 func getInTouch(c echo.Context) error {
@@ -46,7 +91,7 @@ func getInTouch(c echo.Context) error {
 }
 
 func addANewProject(c echo.Context) error {
-	tmpl, err := template.ParseFiles("views/my-project.html")
+	tmpl, err := template.ParseFiles("views/add-a-new-project.html")
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
@@ -56,34 +101,173 @@ func addANewProject(c echo.Context) error {
 }
 
 func projectDetail(c echo.Context) error {
-	// id, _ := strconv.Atoi(c.Param("id")) // convert string to integer
-
 	tmpl, err := template.ParseFiles("views/project-detail.html")
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 	}
 
-	// data := map[string]interface{}{
-	// 	"id":      id,
-	// 	"Title":   "Dumbways Mobile App",
+	id, _ := strconv.Atoi(c.Param("id")) // convert string to integer
 
-	// 	"P1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sollicitudin tortor. Mauris nec ipsum eleifend, interdum magna eget, maximus enim. Nunc sit amet tempor leo, sodales pharetra nisi. Sed rutrum nulla ut ultrices imperdiet. Phasellus nec erat ac orci lacinia imperdiet. Nunc augue felis, pulvinar id ligula sit amet, cursus tincidunt mi. Duis aliquam enim id sem vulputate rhoncus. Proin volutpat metus a sem vestibulum, bibendum consequat ex ultricies. Sed egestas pretium efficitur.",
+	var projectDetailValues = projectCards{}
 
-	// 	"P2": "Donec nisl risus, efficitur et nibh nec, rhoncus vestibulum tellus. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean dictum vulputate neque, quis pellentesque mi maximus et. Mauris non scelerisque quam. Fusce tellus orci, molestie at neque vel, feugiat aliquam lectus. Nam ut dictum orci, vel finibus mi. Nullam et justo non erat iaculis tincidunt. Donec nibh lorem, varius sed rutrum vel, ultrices at metus. Nulla sit amet est et neque consequat elementum. Fusce posuere dolor et nunc euismod tincidunt. Curabitur ullamcorper aliquam egestas. Etiam posuere pellentesque lacus vitae porta. Phasellus dapibus scelerisque elit facilisis arius. Etiam at enim ac tellus porta imperdiet.",
+	for index, data := range projectCardValues {
+		if id == index {
+			projectDetailValues = projectCards{
+				ProjectNameDisplay:        data.ProjectNameDisplay,
+				StartDate:                 data.StartDate,
+				EndDate:                   data.EndDate,
+				MonthDuration:             data.MonthDuration,
+				DayDuration:               data.DayDuration,
+				Duration:                  data.Duration,
+				ProjectDescriptionDisplay: data.ProjectDescriptionDisplay,
+				ReactIcon:                 data.ReactIcon,
+				JsIcon:                    data.JsIcon,
+				NodeIcon:                  data.NodeIcon,
+				SocketIcon:                data.SocketIcon,
+			}
+		}
+	}
 
-	// 	"P3": "Aenean eget ex sem. Nulla aliquam urna non velit eleifend, ac volutpat tortor sollicitudin. Donec elementum feugiat felis, sed lacinia turpis posuere congue. Quisque sem metus, porttitor id faucibus id, posuere vitae urna. Mauris quis ullamcorper est, in accumsan purus. Proin egestas felis et augue rhoncus, ac pulvinar velit semper. Suspendisse quis porta neque, nec semper libero. Proin quis porttitor ex. Pellentesque id massa id mauris facilisis laoreet. Proin facilisis ante ut pulvinar vehicula. Fusce sit amet felis et dui pulvinar porta sit amet sit amet tortor. Etiam sed erat et nisl pulvina imperdiet. Praesent in erat non nibh iaculis sodales vel quis enim.",
-	// }
+	data := map[string]interface{}{
+		"projectDetail": projectDetailValues,
+	}
 
-	return tmpl.Execute(c.Response(), nil)
+	return tmpl.Execute(c.Response(), data)
 }
 
 func submitNewProject(c echo.Context) error {
-	projectName := c.FormValue("projectName")
-	projectDescription := c.FormValue("projectDescription")
 
-	fmt.Println(projectName)
-	fmt.Println(projectDescription)
+	var startDateForm, endDateForm string
+	var monthRemainder, dayRemainder int
+
+	startDateForm = c.FormValue("startDate")
+	endDateForm = c.FormValue("endDate")
+
+	startDateParse, _ := time.Parse("2006-01-02", startDateForm)
+	endDateParse, _ := time.Parse("2006-01-02", endDateForm)
+
+	startDateFormat := startDateParse.Format("Jan 02, 2006")
+	endDateFormat := endDateParse.Format("Jan 02, 2006")
+
+	dayRemainder = int(endDateParse.Sub(startDateParse).Hours() / 24)
+	if dayRemainder >= 30 {
+		monthRemainder = dayRemainder / 30
+		monthRemainderValue := strconv.Itoa(monthRemainder)
+		submitProjectCards := projectCards{
+			ProjectNameDisplay:        c.FormValue("projectNameDisplay"),
+			ProjectDescriptionDisplay: c.FormValue("projectDescriptionDisplay"),
+			Duration:                  monthRemainderValue + " months",
+			StartDate:                 startDateFormat,
+			EndDate:                   endDateFormat,
+			ReactIcon:                 c.FormValue("ReactJs"),
+			JsIcon:                    c.FormValue("Javascript"),
+			NodeIcon:                  c.FormValue("NodeJs"),
+			SocketIcon:                c.FormValue("SocketIO"),
+		}
+		projectCardValues = append(projectCardValues, submitProjectCards)
+	} else {
+		dayRemainderValue := strconv.Itoa(dayRemainder)
+		submitProjectCards := projectCards{
+			ProjectNameDisplay:        c.FormValue("projectNameDisplay"),
+			ProjectDescriptionDisplay: c.FormValue("projectDescriptionDisplay"),
+			Duration:                  dayRemainderValue + " days",
+			StartDate:                 startDateFormat,
+			EndDate:                   endDateFormat,
+			ReactIcon:                 c.FormValue("ReactJs"),
+			JsIcon:                    c.FormValue("Javascript"),
+			NodeIcon:                  c.FormValue("NodeJs"),
+			SocketIcon:                c.FormValue("SocketIO"),
+		}
+		projectCardValues = append(projectCardValues, submitProjectCards)
+	}
+
+	return c.Redirect(http.StatusMovedPermanently, "/")
+}
+
+func editProject(c echo.Context) error {
+	tmpl, err := template.ParseFiles("views/edit-project.html")
+
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	var editProject = projectCards{}
+
+	for i, data := range projectCardValues {
+		if id == i {
+			editProject = projectCards{
+				ProjectNameDisplay:        data.ProjectNameDisplay,
+				ProjectDescriptionDisplay: data.ProjectDescriptionDisplay,
+			}
+		}
+	}
+
+	data := map[string]interface{}{
+		"projectDetail": editProject,
+	}
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
+	return tmpl.Execute(c.Response(), data)
+}
+
+func submitEditedProject(c echo.Context) error {
+
+	var startDateForm, endDateForm string
+	var monthRemainder, dayRemainder int
+
+	startDateForm = c.FormValue("startDate")
+	endDateForm = c.FormValue("endDate")
+
+	startDateParse, _ := time.Parse("2006-01-02", startDateForm)
+	endDateParse, _ := time.Parse("2006-01-02", endDateForm)
+
+	startDateFormat := startDateParse.Format("Jan 02, 2006")
+	endDateFormat := endDateParse.Format("Jan 02, 2006")
+
+	dayRemainder = int(endDateParse.Sub(startDateParse).Hours() / 24)
+	if dayRemainder >= 30 {
+		monthRemainder = dayRemainder / 30
+		monthRemainderValue := strconv.Itoa(monthRemainder)
+		id, _ := strconv.Atoi(c.Param("id"))
+		editProject := projectCards{
+			ProjectNameDisplay:        c.FormValue("projectNameDisplay"),
+			ProjectDescriptionDisplay: c.FormValue("projectDescriptionDisplay"),
+			Duration:                  monthRemainderValue + " months",
+			StartDate:                 startDateFormat,
+			EndDate:                   endDateFormat,
+			ReactIcon:                 c.FormValue("ReactJs"),
+			JsIcon:                    c.FormValue("Javascript"),
+			NodeIcon:                  c.FormValue("NodeJs"),
+			SocketIcon:                c.FormValue("SocketIO"),
+		}
+		projectCardValues = append(projectCardValues[:id+1], editProject)
+	} else {
+		dayRemainderValue := strconv.Itoa(dayRemainder)
+		id, _ := strconv.Atoi(c.Param("id"))
+		editProject := projectCards{
+			ProjectNameDisplay:        c.FormValue("projectNameDisplay"),
+			ProjectDescriptionDisplay: c.FormValue("projectDescriptionDisplay"),
+			Duration:                  dayRemainderValue + " days",
+			StartDate:                 startDateFormat,
+			EndDate:                   endDateFormat,
+			ReactIcon:                 c.FormValue("ReactJs"),
+			JsIcon:                    c.FormValue("Javascript"),
+			NodeIcon:                  c.FormValue("NodeJs"),
+			SocketIcon:                c.FormValue("SocketIO"),
+		}
+		projectCardValues = append(projectCardValues[:id+1], editProject)
+	}
+
+	return c.Redirect(http.StatusMovedPermanently, "/")
+}
+
+func deleteProject(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	fmt.Println("Check")
+
+	projectCardValues = append(projectCardValues[:id], projectCardValues[id+1:]...)
 
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }

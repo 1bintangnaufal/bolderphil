@@ -1,0 +1,3 @@
+if dayRemainderValue >= 30 {
+	dayRemainderValue = "0"
+}
