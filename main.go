@@ -1,25 +1,25 @@
 package main
 
 import (
-	// "errors"
+	"context"
 	"fmt"
 	"html/template"
 	"net/http"
-	"time"
-	// "time"
+	"personal-web/connection"
 	"strconv"
+	"time"
+	
 	"github.com/labstack/echo/v4"
-	// "golang.org/x/tools/go/analysis/passes/timeformat"
 )
 
 type projectCards struct {
+	ID                        int
+	Image                     string
 	ProjectNameDisplay        string
+	ProjectDescriptionDisplay string
+	Duration                  string
 	StartDate                 string
 	EndDate                   string
-	MonthDuration             string
-	DayDuration               string
-	Duration                  string
-	ProjectDescriptionDisplay string
 	ReactIcon                 string
 	JsIcon                    string
 	NodeIcon                  string
@@ -36,18 +36,21 @@ var projectCardValues = []projectCards{
 		JsIcon:                    "Javascript",
 		NodeIcon:                  "Node Js",
 	},
-	// {
-	// 	ProjectNameDisplay: "Latest Web App",
-	// 	StartDate: "December 1 2022",
-	// 	EndDate: "February 2 2023",
-	// 	Duration: "2 Months",
-	// 	ProjectDescriptionDisplay: "Wow, kasihan otak saya",
-	// 	ReactIcon: "React Js",
-	// 	SocketIcon: "Socket IO",
-	// },
+	{
+		ProjectNameDisplay:        "Latest Web App",
+		StartDate:                 "December 1 2022",
+		EndDate:                   "February 2 2023",
+		Duration:                  "2 Months",
+		ProjectDescriptionDisplay: "Wow, kasihan otak saya",
+		ReactIcon:                 "React Js",
+		SocketIcon:                "Socket IO",
+	},
 }
 
 func main() {
+
+	connection.DatabaseConnect()
+
 	e := echo.New()
 
 	e.Static("/public", "public")
@@ -73,8 +76,26 @@ func home(c echo.Context) error {
 		//ini untuk menampilkan error saat dijalankan di browser, melainkan terminal
 	}
 
+	databaseData, _ := connection.Conn.Query(context.Background(), "SELECT id, image, projectnamedisplay, projectdescriptiondisplay, duration FROM tb_project")
+
+	var result []projectCards
+
+	for databaseData.Next() {
+		var each = projectCards{}
+
+		err := databaseData.Scan(&each.ID, &each.Image, &each.ProjectNameDisplay, &each.ProjectDescriptionDisplay, &each.Duration)
+		if err != nil {
+			fmt.Println(err.Error())
+			return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+		}
+
+		result = append(result, each)
+	}
+
+	fmt.Println(result)
+
 	data := map[string]interface{}{
-		"dataValues": projectCardValues,
+		"dataValues": result,
 	}
 
 	return tmpl.Execute(c.Response(), data)
@@ -117,8 +138,6 @@ func projectDetail(c echo.Context) error {
 				ProjectNameDisplay:        data.ProjectNameDisplay,
 				StartDate:                 data.StartDate,
 				EndDate:                   data.EndDate,
-				MonthDuration:             data.MonthDuration,
-				DayDuration:               data.DayDuration,
 				Duration:                  data.Duration,
 				ProjectDescriptionDisplay: data.ProjectDescriptionDisplay,
 				ReactIcon:                 data.ReactIcon,
